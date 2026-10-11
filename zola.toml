@@ -7,18 +7,17 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-theme = "volks-typo"
+theme = "linkita"
 
 # Site-wide feed off; the blog section emits a blog-only feed at /blog/rss.xml.
 generate_feeds = false
 feed_filenames = ["rss.xml"]
 
-taxonomies = [
-  { name = "categories" },
-]
-
 title = "Nate Gross, Software Engineer"
 description = "Website of Nate"
+
+[search]
+index_format = "elasticlunr_javascript"
 
 [markdown]
 
@@ -26,10 +25,10 @@ description = "Website of Nate"
 theme = "catppuccin-mocha"
 
 [extra]
-# Navigation — add / remove / reorder without touching theme files
-main_menu = [
-  { name = "Home", url = "/" },
-  { name = "Blog", url = "/blog" },
-  { name = "Categories", url = "/categories" },
-  { name = "About", url = "/about" },
+header_menu_name = "main"
+
+[extra.menus]
+main = [
+  { name = "Home", url = "@base/" },
+  { name = "Blog", url = "@base/blog/" },
 ]

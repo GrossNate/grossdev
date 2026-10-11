@@ -1,3 +1,4 @@
-[submodule "themes/volks-typo"]
-	path = themes/volks-typo
-	url = https://gitlab.com/tisgoud/zola-volks-typo-theme.git
+[submodule "themes/linkita"]
+	path = themes/linkita
+	url = https://github.com/salif/linkita.git
+	branch = main
