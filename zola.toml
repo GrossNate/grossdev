@@ -1,0 +1,35 @@
+# The URL the site will be built for
+base_url = "https://gross.dev"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+theme = "volks-typo"
+
+# Site-wide feed off; the blog section emits a blog-only feed at /blog/rss.xml.
+generate_feeds = false
+feed_filenames = ["rss.xml"]
+
+taxonomies = [
+  { name = "categories" },
+]
+
+title = "Nate Gross, Software Engineer"
+description = "Website of Nate"
+
+[markdown]
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+[extra]
+# Navigation — add / remove / reorder without touching theme files
+main_menu = [
+  { name = "Home", url = "/" },
+  { name = "Blog", url = "/blog" },
+  { name = "Categories", url = "/categories" },
+  { name = "About", url = "/about" },
+]
