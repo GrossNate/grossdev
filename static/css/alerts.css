@@ -1,20 +1,35 @@
-:root {
-  --alert-note: #0969da;
-  --alert-tip: #1a7f37;
-  --alert-important: #8250df;
-  --alert-warning: #9a6700;
-  --alert-caution: #d1242f;
+/* Map Zola's five alert types to Linkita's admonition styles. */
+.prose blockquote.markdown-alert-note {
+  --alert-bg: var(--admonition-note);
+  --alert-label: "Note";
+  --alert-icon: url("../icons/note.svg");
 }
 
-html.dark {
-  --alert-note: #4493f8;
-  --alert-tip: #3fb950;
-  --alert-important: #ab7df8;
-  --alert-warning: #d29922;
-  --alert-caution: #f85149;
+.prose blockquote.markdown-alert-tip {
+  --alert-bg: var(--admonition-tip);
+  --alert-label: "Tip";
+  --alert-icon: url("../icons/tip.svg");
 }
 
-/* Apply only to alerts, leaving ordinary blockquotes unchanged. */
+.prose blockquote.markdown-alert-important {
+  --alert-bg: var(--admonition-info);
+  --alert-label: "Important";
+  --alert-icon: url("../icons/info.svg");
+}
+
+.prose blockquote.markdown-alert-warning {
+  --alert-bg: var(--admonition-warning);
+  --alert-label: "Warning";
+  --alert-icon: url("../icons/warning.svg");
+}
+
+.prose blockquote.markdown-alert-caution {
+  --alert-bg: var(--admonition-danger);
+  --alert-label: "Caution";
+  --alert-icon: url("../icons/danger.svg");
+}
+
+/* Match Linkita's rounded, tinted admonition container. */
 .prose blockquote:is(
   .markdown-alert-note,
   .markdown-alert-tip,
@@ -22,65 +37,59 @@ html.dark {
   .markdown-alert-warning,
   .markdown-alert-caution
 ) {
+  position: relative;
   margin-block: 1.5em;
-  padding: 1rem 1.25rem;
+  padding: 0;
   border: 0;
-  border-inline-start: 4px solid var(--alert-color);
-  border-radius: 0.375rem;
-  background: color-mix(in srgb, var(--alert-color) 7%, transparent);
+  border-radius: 0.5rem;
+  background: var(--alert-bg);
   color: var(--tw-prose-body, inherit);
   font-style: normal;
   font-weight: normal;
   quotes: none;
 }
 
-/* Zola supplies the alert type; CSS supplies its visible label. */
-.prose blockquote.markdown-alert-note {
-  --alert-color: var(--alert-note);
-  --alert-label: "Note";
-}
-
-.prose blockquote.markdown-alert-tip {
-  --alert-color: var(--alert-tip);
-  --alert-label: "Tip";
-}
-
-.prose blockquote.markdown-alert-important {
-  --alert-color: var(--alert-important);
-  --alert-label: "Important";
-}
-
-.prose blockquote.markdown-alert-warning {
-  --alert-color: var(--alert-warning);
-  --alert-label: "Warning";
-}
-
-.prose blockquote.markdown-alert-caution {
-  --alert-color: var(--alert-caution);
-  --alert-label: "Caution";
-}
-
+/* Header: the second translucent layer adds a stronger tint. */
 .prose blockquote[class*="markdown-alert-"]::before {
   content: var(--alert-label);
   display: block;
-  margin-bottom: 0.5rem;
-  color: var(--alert-color);
+  padding: 0.25rem 0.5rem 0.25rem 2rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: var(--alert-bg);
+  font-size: 1rem;
   font-weight: 600;
-  font-style: normal;
-  line-height: 1.5;
+  line-height: 1.5rem;
 }
 
-/* Remove Linkita's decorative blockquote quotation marks. */
-.prose blockquote[class*="markdown-alert-"] > p::before,
-.prose blockquote[class*="markdown-alert-"] > p::after {
-  content: none;
+/* Mask the icon so it follows the text color in either theme. */
+.prose blockquote[class*="markdown-alert-"]::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: currentColor;
+  -webkit-mask: var(--alert-icon) center / contain no-repeat;
+  mask: var(--alert-icon) center / contain no-repeat;
+  pointer-events: none;
 }
 
-/* Keep the content aligned with the label and box padding. */
+/* Space the Markdown content beneath the header. */
+.prose blockquote[class*="markdown-alert-"] > * {
+  margin-inline: 1rem;
+}
+
 .prose blockquote[class*="markdown-alert-"] > :first-child {
-  margin-top: 0;
+  margin-top: 0.75rem;
 }
 
 .prose blockquote[class*="markdown-alert-"] > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
+}
+
+/* Suppress the quotation marks from Linkita's blockquote styling. */
+.prose blockquote[class*="markdown-alert-"] > p::before,
+.prose blockquote[class*="markdown-alert-"] > p::after {
+  content: none;
 }
