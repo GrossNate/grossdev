@@ -1,0 +1,27 @@
+{% set socials = config.extra.profiles[config.extra.profile].social
+   | default(value=[]) %}
+
+{% if socials %}
+<div
+  role="group"
+  aria-label="Social profiles"
+  class="flex shrink-0 space-x-3 dark:invert"
+>
+  {% for social in socials %}
+  <a
+    href="{{ social.url }}"
+    title="{{ social.title | default(value=social.name) }}"
+    aria-label="{{ social.title | default(value=social.name) }}"
+    target="_blank"
+    rel="me noopener noreferrer"
+  >
+    <img
+      src="{{ <_link_social_icon icon={social.name} prl={true} /> }}"
+      width="24"
+      height="24"
+      alt=""
+    />
+  </a>
+  {% endfor %}
+</nav>
+{% endif %}

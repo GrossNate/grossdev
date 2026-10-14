@@ -1,0 +1,33 @@
+{% component portfolio(pages: array) %}
+{% for project in pages %}
+<div class="not-prose text-base leading-7 block-bg my-4 flex w-full flex-col rounded-lg px-5 py-1.5">
+  <h2 class="my-2 text-xl font-bold text-black dark:text-white">
+    <a href="{{ project.permalink }}">{{ project.title }}</a>
+  </h2>
+
+  {% if project.description %}
+  <p>{{ project.description | markdown(inline=true) | safe }}</p>
+  {% endif %}
+
+  <div class="my-2 flex flex-wrap items-center justify-between">
+    <div class="flex flex-wrap gap-x-2 text-sm opacity-80">
+      {% for tag in project.extra.tags | default(value=[]) %}
+      <span>#{{ tag }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="flex flex-wrap gap-x-2">
+      <a class="underline" href="{{ project.permalink }}">
+        case study
+      </a>
+
+      {% for link in project.extra.links | default(value=[]) %}
+      <a class="underline" href="{{ link.url }}">
+        {{ link.name }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endcomponent %}

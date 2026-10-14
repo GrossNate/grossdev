@@ -13,8 +13,8 @@ theme = "linkita"
 generate_feeds = false
 feed_filenames = ["rss.xml"]
 
-title = "Nate Gross, Software Engineer"
-description = "Website of Nate"
+title = "gross.dev"
+description = "Nate Gross' website"
 
 [search]
 index_format = "elasticlunr_javascript"
@@ -30,8 +30,28 @@ header_menu_name = "main"
 
 invert_page_navigation = true
 
+profile = "grossnate"
+
+# Don't need Mermaid support yet, but I surely will at some point.
+mermaid = false
+
 [extra.menus]
 main = [
-  { name = "Home", url = "@base/" },
   { name = "Blog", url = "@base/blog/" },
+  { name = "Portfolio", url = "@base/portfolio/" }
 ]
+
+[extra.profiles.grossnate]
+
+name = "Nate Gross"
+
+social = [
+  { name = "linkedin", url = "https://linkedin.com/in/nathangross" },
+  { name = "github", url = "https://github.com/GrossNate" },
+  { name = "bluesky", url = "https://bsky.app/profile/nate.gross.dev" },
+]
+
+[extra.footer]
+since = 2026
+
+copyright = "&copy;&nbsp;$YEAR Nathan Gross"
