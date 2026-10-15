@@ -35,6 +35,8 @@ profile = "grossnate"
 # Don't need Mermaid support yet, but I surely will at some point.
 mermaid = false
 
+page_info = [{when="date"}, {when="date_updated", prepend="updated (", append=")"}, {when="status"}, {when="word_count"}]
+
 [extra.menus]
 main = [
   { name = "Blog", url = "@base/blog/" },

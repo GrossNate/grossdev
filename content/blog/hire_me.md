@@ -1,6 +1,7 @@
 +++
 title = "Hire me!"
 date = 2026-10-15
+draft = true
 description = "You should hire me (and what I want in a job)."
 +++
 
