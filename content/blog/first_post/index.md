@@ -47,10 +47,11 @@ should make it easier to get started if I don't have to feel like things are
 finished in order to publish them. And perhaps having some half-baked ideas out
 there in public will be the prod I need to get them finished. ;-)
 
-💡 = idea/stub
-📝 = draft/in progress
-📕 = done(ish)
-📜 = maybe a little outdated
+Status key:<br />
+💡 idea/stub (might just be a word or a few bullets)<br />
+📝 in-progress/draft (may change quite a bit)<br />
+📕 done (probably won't change)<br />
+📜 maybe outdated (might be wrong or not representative of my current thinking)
 
 [^1]: Substack has (had?) a Nazi problem: [www.theguardian.com/media/2026/feb/07/revealed-how-substack-makes-money-from-hosting-nazi-newsletters](https://www.theguardian.com/media/2026/feb/07/revealed-how-substack-makes-money-from-hosting-nazi-newsletters?isExternal=true), [www.engadget.com/apps/substack-accidentally-sent-push-alerts-promoting-a-nazi-publication-191004115.html](https://www.engadget.com/apps/substack-accidentally-sent-push-alerts-promoting-a-nazi-publication-191004115.html)
 [^2]: *Chicana on the Edge*, "I Have No Niche": [reginachicana.com/2026/08/i-have-no-niche/](https://reginachicana.com/2026/08/i-have-no-niche/)

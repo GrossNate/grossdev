@@ -10,14 +10,7 @@ links = [
 ]
 +++
 
-## The problem
+I wanted to get some experience contributing to a major open source project and
+had some slight connections at Mozilla so I worked a little bit on Firefox.
 
-Write your full case study here.
-
-## What I built
-
-Include screenshots, code examples, and implementation details.
-
-## Technical decisions
-
-Explain the tradeoffs behind your approach.
+Note to self: flesh this out a little bit.

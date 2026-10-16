@@ -15,12 +15,10 @@ Check out the full case study: [unilogs.github.io/case-study](https://unilogs.gi
 
 ## The problem
 
-Write your full case study here.
+- Summarize something from the full case study?
 
 ## What I built
 
 - Focus in on my contributions (primarily the Vector log shipper).
 
 ## Technical decisions
-
-Explain the tradeoffs behind your approach.
