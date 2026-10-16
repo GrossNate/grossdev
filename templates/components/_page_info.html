@@ -43,19 +43,38 @@
       {%- if not loop.last %}<span
         class="middot"></span>{% endif %}
     {%- endif %}
-  {%- elif info.when == "status" %}
-    {%- if page.extra.status is string %}
-      {%- if page.extra.status == "stub" %}<span>💡 idea/stub</span>
-      {%- elif page.extra.status == "draft" %}<span>📝 in-progress/draft</span>
-      {%- elif page.extra.status == "done" %}<span>📕 done</span>
-      {%- elif page.extra.status == "old" %}<span>📜 possibly outdated</span>
-      {%- else %}{{
-        throw(message = "page info extra status invalid, got " ~ page.extra.status ~ " but expected one of stub|draft|done|old")
-      }}
-      {%- endif %}
-      {%- if not loop.last %}<span
-        class="middot"></span>{% endif %}
+{%- elif info.when == "status" %}
+  {%- if page.extra.status is defined %}
+    {%- if page.extra.status is not string %}
+      {{ throw(message="Status must be a string: " ~ page.permalink) }}
     {%- endif %}
+
+    {%- if page.extra.status == "stub" %}
+      {%- set status_label = "💡 idea/stub" %}
+    {%- elif page.extra.status == "draft" %}
+      {%- set status_label = "📝 in-progress/draft" %}
+    {%- elif page.extra.status == "done" %}
+      {%- set status_label = "📕 done" %}
+    {%- elif page.extra.status == "old" %}
+      {%- set status_label = "📜 possibly outdated" %}
+    {%- else %}
+      {{ throw(
+        message="Invalid status '" ~ page.extra.status
+          ~ "' on " ~ page.permalink
+          ~ "; expected stub, draft, done, or old."
+      ) }}
+    {%- endif %}
+
+    <span>
+      {{- info.prepend | default(value="") -}}
+      {{- status_label -}}
+      {{- info.append | default(value="") -}}
+    </span>
+
+    {%- if not loop.last %}
+      <span class="middot"></span>
+    {%- endif %}
+  {%- endif %}
   {%- elif info.when == "reading_time" %}{%
     if info.prepend is string %}{{ info.prepend }}{% endif %}{%
     set reading_time_min = page.reading_time % 60 %}<time
