@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+
+{% block main %}
+  {{ super() }}
+
+  {% if page.extra.featured_project %}
+    {% set project = get_page(path=page.extra.featured_project) %}
+
+    <section class="not-prose text-base leading-7 block-bg my-4 flex w-full flex-col rounded-lg px-5 py-1.5">
+      <p class="my-2 text-sm opacity-80">Featured project</p>
+
+      <h2 class="my-2 text-xl font-bold text-black dark:text-white">
+        <a class="underline" href="{{ project.permalink }}">
+          {{ project.title | markdown(inline=true) | safe }}
+        </a>
+      </h2>
+
+      {% if project.description %}
+        <p>{{ project.description | markdown(inline=true) | safe }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% set blog = get_section(path="blog/_index.md") %}
+
+  {% if blog.pages | length > 0 %}
+    {% set post = blog.pages | first %}
+
+    <section class="not-prose text-base leading-7 block-bg my-4 flex w-full flex-col rounded-lg px-5 py-1.5">
+      <p class="my-2 text-sm opacity-80">Latest writing</p>
+
+      <h2 class="my-2 text-xl font-bold text-black dark:text-white">
+        <a class="underline" href="{{ post.permalink }}">
+          {{ post.title | markdown(inline=true) | safe }}
+        </a>
+      </h2>
+
+      <p class="my-2 text-sm opacity-80">
+        <time datetime="{{ post.date }}">
+          {{ post.date | date(format="%B %e, %Y") }}
+        </time>
+      </p>
+
+      {% if post.description %}
+        <p>{{ post.description | markdown(inline=true) | safe }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+{% endblock main %}

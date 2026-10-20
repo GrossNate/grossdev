@@ -1,7 +1,7 @@
 +++
 title = "A blog? In *this* economy?"
 date = 2026-10-14
-description = "my first post"
+description = "My first post. Why am I doing this? What am I doing?"
 updated = 2026-10-15
 [extra]
 status = "draft"

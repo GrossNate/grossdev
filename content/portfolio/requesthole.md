@@ -1,6 +1,6 @@
 +++
 title = "RequestHole"
-description = "A public GraphQL API for accessing US Congressional data."
+description = "Collect and inspect HTTP requests."
 weight = 2
 
 [extra]
