@@ -1,0 +1,68 @@
+{% component _mermaid(@page: map, use_cdn) -%}
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+    const requestedIcons = {{ page.extra?.mermaid_icons | default(value=[]) | json_encode() | safe }};
+
+    const packs = new Map();
+
+    for (const identifier of requestedIcons) {
+      const parts = identifier.split(":");
+
+      if (parts.length !== 2 || !parts[0] || !parts[1]) {
+        throw new Error(
+          `Invalid Mermaid icon "${identifier}". Expected "pack:icon".`
+        );
+      }
+
+      const [pack, icon] = parts;
+
+      if (!packs.has(pack)) {
+        packs.set(pack, new Set());
+      }
+
+      packs.get(pack).add(icon);
+    }
+
+    mermaid.registerIconPacks(
+      Array.from(packs, ([pack, icons]) => ({
+        name: pack,
+        loader: async () => {
+          const url = new URL(
+            `https://api.iconify.design/${encodeURIComponent(pack)}.json`
+          );
+
+          url.searchParams.set(
+            "icons",
+            Array.from(icons).sort().join(",")
+          );
+
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            throw new Error(
+              `Could not load Mermaid icons from "${pack}": HTTP ${response.status}`
+            );
+          }
+
+          const data = await response.json();
+
+          if (data.not_found?.length) {
+            throw new Error(
+              `Unknown Mermaid icons: ${
+                data.not_found.map(icon => `${pack}:${icon}`).join(", ")
+              }`
+            );
+          }
+
+          return data;
+        },
+      }))
+    );
+
+    window.zolaTheme.mermaid.init({
+      mermaid,
+      s: ".mermaid",
+    });
+  </script>
+{%- endcomponent %}

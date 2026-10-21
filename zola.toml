@@ -33,7 +33,7 @@ invert_page_navigation = true
 profile = "grossnate"
 
 # Don't need Mermaid support yet, but I surely will at some point.
-mermaid = false
+mermaid = true
 
 page_info = [
   {when="date"},

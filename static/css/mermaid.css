@@ -1,0 +1,53 @@
+/* Light theme */
+.mermaid {
+  --architecture-text: #262626;
+  --architecture-line: #525252;
+  --architecture-border: #737373;
+}
+
+/* Dark theme: follows Linkita's active theme, including manual selection. */
+html.dark .mermaid {
+  --architecture-text: #e5e5e5;
+  --architecture-line: #d4d4d4;
+  --architecture-border: #a3a3a3;
+}
+
+/*
+ * Give inline icons a theme-dependent currentColor.
+ * Explicit SVG fills and strokes, including colored logos, stay unchanged.
+ */
+.mermaid .architecture-services,
+.mermaid .architecture-groups,
+.mermaid .architecture-services svg,
+.mermaid .architecture-groups svg {
+  color: var(--architecture-text) !important;
+}
+
+/* Service, group, and connection labels share this Mermaid class. */
+.mermaid .architecture-service-label,
+.mermaid .architecture-service-label text,
+.mermaid .architecture-service-label tspan {
+  fill: var(--architecture-text) !important;
+  color: var(--architecture-text) !important;
+}
+
+/* Labels used inside services with text instead of an icon. */
+.mermaid .architecture-services .node-icon-text > div {
+  color: var(--architecture-text) !important;
+}
+
+/* Connection lines */
+.mermaid .architecture-edges .edge {
+  stroke: var(--architecture-line) !important;
+}
+
+/* Connection arrowheads */
+.mermaid .architecture-edges .arrow {
+  fill: var(--architecture-line) !important;
+}
+
+/* Group boundaries and services drawn without icons */
+.mermaid .architecture-groups .node-bkg,
+.mermaid .architecture-services .node-bkg {
+  stroke: var(--architecture-border) !important;
+}
